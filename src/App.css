@@ -1,0 +1,7 @@
+.app {
+  display: flex;
+  flex-flow: row wrap;
+  width: 520px;
+  margin: auto;
+  height: 520px;
+}
