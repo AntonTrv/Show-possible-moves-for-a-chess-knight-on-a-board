@@ -72,12 +72,13 @@ class App extends React.Component {
     this.setState({ availableMoves: gotAllMoves.map(i => i) });
 
     this.results();
+
   }
 
   /*
   gathers all tiles,
   checks if classList of tiles equal to values from state's availableMoves,
-  edits approven tiles color
+  edits approven tiles color and back to orinal color
   */
 
   results(){
@@ -87,12 +88,15 @@ class App extends React.Component {
     this.state.availableMoves.map((el) =>
     storeAllTiles.map((value)=>
     (el[0]===parseInt(value.classList[2])) && (el[1]===parseInt(value.classList[1])) ?
-    storeMoveTiles.push(value) : console.log('no')
+    storeMoveTiles.push(value) : null
+
   ))
-  storeMoveTiles.map(el => el.style.backgroundColor='red')
-  if(this.state.availableMoves.length){
-    
+  storeMoveTiles.map(el => el.classList.add('marked'))
+  if(storeMoveTiles.length){
+    this.setState({availableMoves: []});
+    setTimeout(function(){storeMoveTiles.map(el => el.classList.remove('marked'))} ,1000);
   }
+
   }
 
   render(){
